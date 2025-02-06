@@ -1,0 +1,61 @@
+[build-system]
+requires = ["flit_core >=3.2,<4"]
+build-backend = "flit_core.buildapi"
+
+[project]
+name = "malkoha"
+version = "0.0.1"
+description = "Simple source code requirements tracing"
+dependencies = [ ]
+optional-dependencies.test = [
+    "black",
+    "mypy",
+    "pytest",
+    "pytest-cov[all]",
+    "pylint",
+]
+requires-python = ">=3.8"
+authors = [
+    { name = "Tim Schubert", email = "tim.schubert@dlr.de" },
+]
+maintainers = [
+    { name = "Tim Schubert", email = "tim.schubert@dlr.de" },
+]
+readme = "README.md"
+classifiers = [
+    "License :: OSI Approved :: Apache Software License",
+    "License :: OSI Approved :: MIT License",
+]
+keywords = ["tracing"]
+
+[project.urls]
+Homepage = "https://dlr.de/ft/ssy"
+#Documentation = "https://readthedocs.org"
+#Repository = "https://github.com/me/spam.git"
+#"Bug Tracker" = "https://github.com/me/spam/issues"
+#Changelog = "https://github.com/me/spam/blob/master/CHANGELOG.md"
+
+[tool.pylsp.plugins]
+black.enabled = true
+mypy.enabled = true
+ruff.enabled = true
+pylint.enabled = true
+
+[tool.pytest.ini_options]
+addopts = [
+    "--import-mode=importlib",
+]
+pythonpath = "."
+markers = [
+    "covreq",
+]
+junit_family = "legacy"
+
+[tool.mypy]
+disable_error_code = "import-untyped"
+
+[tool.pylint]
+recursive = "y"
+
+[project.scripts]
+malkoha = "malkoha:run"
