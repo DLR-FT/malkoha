@@ -3,9 +3,6 @@
 check-format:
 	nix fmt -- --fail-on-change --no-cache
 
-commit-check:
-	cog check
-
 mypy:
 	mypy .
 
