@@ -14,7 +14,7 @@ optional-dependencies.test = [
     "pytest-cov[all]",
     "pylint",
 ]
-requires-python = ">=3.8"
+requires-python = ">=3.10"
 authors = [
     { name = "Tim Schubert", email = "tim.schubert@dlr.de" },
 ]
