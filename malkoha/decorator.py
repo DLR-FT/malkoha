@@ -1,3 +1,6 @@
+"""Decorator implementation"""
+
+
 def trace_requirements(*traced_requirements):
     """Traces an object to a list of requirements"""
 

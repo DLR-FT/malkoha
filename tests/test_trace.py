@@ -1,10 +1,15 @@
-from malkoha import get_traces
+"""Check that tracing does something"""
+
 from importlib import resources
+
+from malkoha import get_traces
 
 from tests import res
 
 
 def test_read_traces():
+    """Read test traces from an example package"""
+
     project = resources.files(res).joinpath("test_package")
     traces = [r.requirement_id for r in get_traces(project)]
 

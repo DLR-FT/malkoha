@@ -1,14 +1,27 @@
+"""Trace information extraction"""
+
 import inspect
 import pkgutil
 import os
 
-from typing import cast
+from functools import partial
+from types import ModuleType
+from typing import cast, Iterable
 from importlib.abc import PathEntryFinder, Loader
 from importlib.machinery import ModuleSpec
-from typing import Iterable
 from pathlib import Path
 
 from malkoha.data import Trace
+
+
+def filter_objects(mod: ModuleType, x: object):
+    """Filters objects that should be tracable"""
+
+    return (
+        not inspect.isbuiltin(x)
+        and inspect.getmodule(x) == mod
+        and (inspect.isclass(x) or inspect.ismodule(x) or inspect.isfunction(x))
+    )
 
 
 def get_traces(path: Path) -> Iterable[Trace]:
@@ -21,12 +34,7 @@ def get_traces(path: Path) -> Iterable[Trace]:
         loader = cast(Loader, spec.loader)
         mod = loader.load_module(info.name)
 
-        for name, value in inspect.getmembers(
-            mod,
-            lambda x: (not inspect.isbuiltin(x))
-            and inspect.getmodule(x) == mod
-            and (inspect.isclass(x) or inspect.ismodule(x) or inspect.isfunction(x)),
-        ):
+        for name, value in inspect.getmembers(mod, partial(filter_objects, mod)):
             try:
                 file = inspect.getsourcefile(mod)
                 line = inspect.getsourcelines(value)[1]
