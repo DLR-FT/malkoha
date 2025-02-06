@@ -1,8 +1,12 @@
+"""Traces data clases"""
+
 from dataclasses import dataclass
 
 
 @dataclass
 class Location:
+    """Location"""
+
     name: str
     file: str | None
     line: int | None
@@ -10,6 +14,8 @@ class Location:
 
 @dataclass
 class Trace:
+    """Trace"""
+
     location: Location
     requirement_id: str | None
 

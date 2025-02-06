@@ -1,3 +1,5 @@
+# pylint: skip-file
+
 from malkoha import trace_requirements
 
 
