@@ -5,5 +5,5 @@
 .ropeproject
 coverage.xml
 junit.xml
-malkoha.xml
+malkoha.json
 __pycache__

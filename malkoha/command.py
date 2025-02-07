@@ -1,10 +1,11 @@
 """Malkoha CLI"""
 
 import sys
+import json
 
 
 from argparse import ArgumentParser, Namespace
-from xml.etree import ElementTree as ET
+from dataclasses import asdict
 
 from malkoha.extract import get_traces
 
@@ -25,32 +26,9 @@ def run():
 
 
 def traces_cmd(args: Namespace):
-    """Writes traces to XML file"""
+    """Writes traces to JSON stream"""
 
-    traces = ET.Element("traces")
-    for trace in get_traces(args.path):
-        if trace.requirement_id:
-            trace_el = ET.SubElement(
-                traces, "trace", requirement_id=trace.requirement_id
-            )
-        else:
-            trace_el = ET.SubElement(traces, "trace")
-        if trace.location.file:
-            line = str(trace.location.line)
-            file = trace.location.file
-            location = ET.SubElement(
-                trace_el,
-                "location",
-                line=line,
-                file=file,
-            )
-        else:
-            location = ET.SubElement(
-                trace_el,
-                "location",
-            )
-        name = trace.location.name
-        location.text = f"{name}"
-    tree = ET.ElementTree(traces)
-    with open("malkoha.xml", "wb") as f:
-        tree.write(f)
+    with open("malkoha.json", "w", encoding="utf-8") as f:
+        for trace in get_traces(args.path):
+            json.dump(asdict(trace), f)
+            f.write("\n")
