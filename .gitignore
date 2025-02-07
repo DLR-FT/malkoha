@@ -1,5 +1,8 @@
 .coverage
 .direnv
-__pycache__
+.mypy_cache
+.pytest_cache
+.ropeproject
 coverage.xml
 junit.xml
+__pycache__
