@@ -1,6 +1,7 @@
 """Traces data clases"""
 
 from dataclasses import dataclass
+from typing import List
 
 
 @dataclass
@@ -17,8 +18,8 @@ class Trace:
     """Trace"""
 
     location: Location
-    requirement_id: str | None
+    requirements: List[str] | None
 
-    def __init__(self, name, file, line, requirement_id):
+    def __init__(self, name, file, line, requirements):
         self.location = Location(name, file, line)
-        self.requirement_id = requirement_id
+        self.requirements = requirements
