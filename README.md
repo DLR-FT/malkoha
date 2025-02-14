@@ -2,7 +2,7 @@
 
 Yet another utility for tracing source code to requirements.
 Traces are written as a stream of JSON objects.
-Every symbol, such as a class or a function, in the namespace of a module will generate a tracing event.
+Every symbol, such as a class or a function, in the namespace of a module will generate a trace event.
 If the object related to the symbol has been annotated with a list of requirement IDs, they will be contained in a trace event.
 
 ## Example output
