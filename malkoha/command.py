@@ -28,7 +28,7 @@ def run():
 def traces_cmd(args: Namespace):
     """Writes traces to JSON stream"""
 
-    with open("malkoha.json", "w", encoding="utf-8") as f:
-        for trace in get_traces(args.path):
-            json.dump(asdict(trace), f)
-            f.write("\n")
+    for trace in get_traces(args.path):
+        json.dump(asdict(trace), sys.stdout)
+        sys.stdout.write("\n")
+        sys.stdout.flush()
