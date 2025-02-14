@@ -60,7 +60,6 @@
             in
             python.pkgs.buildPythonPackage attrs;
 
-          checks = import ./nix/checks.nix (inputs // { inherit pkgs treefmtEval; });
           devShells.default =
             let
               arg = project.renderers.withPackages { inherit python; };
