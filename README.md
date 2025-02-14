@@ -32,4 +32,10 @@ class B:
     pass
 ```
 
-Then run `malkoha` to generate `malkoha.json` for modules found in the working directory.
+Then run `malkoha .` to generate the trace information for modules found in the working directory.
+
+## Finding symbols with missing trace information
+
+```bash
+malkoha . | jq '.requirements = null | .location.name'
+```
