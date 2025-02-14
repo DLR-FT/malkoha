@@ -11,3 +11,7 @@ def a():
 @trace_requirements("Re234", "Re5")
 class B:
     pass
+
+
+class Untraced:
+    pass

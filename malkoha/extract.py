@@ -43,18 +43,17 @@ def get_traces(path: Path) -> Iterable[Trace]:
                 line = None
             if hasattr(value, "__malkoha_traced_requirements__"):
                 requirements = value.__malkoha_traced_requirements__
-                for requirement_id in requirements:
-                    yield Trace(
-                        name=name,
-                        file=file,
-                        line=line,
-                        requirement_id=requirement_id,
-                    )
+                yield Trace(
+                    name,
+                    file,
+                    line,
+                    requirements,
+                )
             else:
                 # This means that the object is missing requirements tracing
                 yield Trace(
-                    name=name,
-                    file=file,
-                    line=line,
-                    requirement_id=None,
+                    name,
+                    file,
+                    line,
+                    requirements=None,
                 )
