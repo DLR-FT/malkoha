@@ -1,4 +1,4 @@
-"""Malkoha sourc code to requirement ID tracing"""
+"""Malkoha source code to requirement tracing"""
 
 from malkoha.decorator import trace_requirements
 from malkoha.extract import get_traces
